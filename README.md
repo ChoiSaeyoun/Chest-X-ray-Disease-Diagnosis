@@ -32,6 +32,7 @@
 - 13개의 질병을 분류할 수 있는 모델 생성
 - 각 질병에 대한 정확도 출력
 - 짧은 시간 안에 높은 정확도를 내야함
+- 웹에 모델을 사용하기 위해 가중치 파일 저장
 
 #### `2) 데이터`
 - 최대한 많은 양의 데이터를 위해 며칠간 서칭
@@ -49,27 +50,43 @@
 - imagenet의 pre-trained weight 학습
 - test AUC가 가장 높았던 efficientnet model을 fine-tuning하여 사용
 
-#### `3) 정확도를 높이기 위한 시도`
-- 다양한 모델 시도
-- 기존에 정해져있던 데이터 비율 조정 : Train, Valid, Test 데이터 비율 0.64:0.16:0.2 -> 0.6:0.2:0.2
-- Train, Test split 함수의 stratify 옵션을 사용하여 데이터의 질병 분포 유지 (MultilabelStratifiedKFold 이용)
-- 같은 환자의 데이터가Train, Valid, Test 데이터 에 모두 나누어 들어가 있었음
-    - 같은 환자의 데이터라면 하나만 남기고 삭제
-    - 모든 데이터셋에 다른 환자가 들어가도록 설정
+#### `3) 정확도에 대한 이슈들`
+- 극초기 : 정확도가 너무 낮게 나옴 -> binary accuracy가 아닌 accuracy 를 출력해서 정확도가 낮게 나옴 -> 수정
+- 초기 : imagenet pretrained, model에 최적화되게 image size 변경, layer 변경
+- 중간 : validation과 test dataset의 accuracy 차이가 너무 큼 -> validation dataset으로 train dataset을 사용하고 있었음 -> 수정
+    - 해당 이유를 알지 못해 다른 시행착오 겪음
+    - 기존에 정해져있던 데이터 비율 조정 : Train, Valid, Test 데이터 비율 0.64:0.16:0.2 -> 0.6:0.2:0.2
+    - Train, Test split 함수의 stratify 옵션을 사용하여 데이터의 질병 분포 유지 (MultilabelStratifiedKFold 이용)
+    - 같은 환자의 데이터가Train, Valid, Test 데이터 에 모두 나누어 들어가 있었음
+        -같은 환자의 데이터라면 하나만 남기고 삭제
+        -모든 데이터셋에 다른 환자가 들어가도록 설정
+- get_roc_curve를 이용하여 AUROC 값 출력
+        
 
 ## Detection
 #### `1) 고려한 점`
-- 13개의 질병 위치를 검출할 수 있는 가중치 값 생성
-- 
+- 13개의 질병 위치를 검출할 수 있는 weight 파일 생성
+- 의심 질병이 여러 개라면 여러 box 출력
+
+#### `2) 데이터`
+- 기존 데이터 사용
+
+#### `2) 기술 선택 과정`
+- yolov5 선택
+
+#### `3) 데이터에 대한 이슈들`
+- 기존에 갖고 있던 데이터의 개수 부족
+- 추가 데이터 서치
+- 기존 데이터의 질병과 같은 데이터들만 bounding box 등을 형식에 맞게 정제
+- 추가 학습 진행
 
 
-
-## 웹사이트 결과
+## 백엔드/프론트엔드
 #### `1) 고려한 점`
 - 환자 관리 : 환자 등록 및 리스팅 가능
 - 환자 진단
     - 로컬에서 환자 x-ray 이미지 업로드
-    - 12초 진단
+    - 학습한 가중치를 이용해 진단 진행
     - TOP3 질병 + 각 질병의 확률값 출력
     - 질병 감염 의심 영역 표시
     - 진단 히스토리 열람 및 삭제 가능
@@ -86,15 +103,22 @@
     - Django로 Airbnb 클론코딩이 가능하다는 것을 발견 -> 로그인/이미지업로드/리스팅/상세정보 관리 등 필요한 기능 겹침 -> 토이프로젝트 진행
     - __Django로 개발 결정__ : https://saeyoun.tistory.com/3
 
+#### `3) 데이터에 대한 이슈들`
+- 백엔드와 딥러닝 연동하기
+    - Classification : 백엔드에서 해당 모델의 backbone을 직접 만들고 학습된 가중치를 부여하는 방식으로 진행
+        -Django의 환자 app 에서 'diagnosis.py' 생성
+        -image load 함수를 통해 이미지를 로드하고 생성 모델로 질병 예측
+        -상위 3개의 질병과 확률값 저장 및 반환
+    - Detection : 백엔드에서 yolov5 모델을 만들고 학습된 가중치를 부여하는 방식으로 진행
+        -이미 로드된 이미지로 'detect.py' 실행시켜 uploads/patient_images/ 경로에 detect 된 이미지 저장
+        -'form.py'에서 새로운 patient 객체에 x-ray 이미지, 질병진단결과, 질병영역검출결과 저장
+
 #### `3) 결과`
 <img src="https://user-images.githubusercontent.com/71118045/144365814-59484285-4c11-48ce-8e2a-cd99ccc134ad.PNG" width="600" height="300"/>
 
 
-최종 프로그램 구조
+## 최종 프로그램 구조
 <img src="https://user-images.githubusercontent.com/71118045/144364448-1fdd71ac-c470-46ed-8b56-d014affe6594.PNG" width="500" height="300"/>
-
-
-이를 구현하기 위해 Classification and Detection 기반 Web Service를 구현했으며, Classification 성능을 향상시키기 위해 PGGAN을 사용하여 합성 의료 X선 데이터를 생성했다. 문제가 있는 부위 특정, X선 처리시간 단축, 응급환자의 정확한 질병분류 등 의료과정의 효율성 향상에 활용될 것으로 기대된다.
 
 
 
