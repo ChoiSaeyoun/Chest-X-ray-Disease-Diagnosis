@@ -35,6 +35,10 @@
     - 질병 감염 의심 영역 표시
     - 진단 히스토리 열람 및 삭제 가능
 
+#### `2) 기술 선정 과정`
+- 딥러닝 기술 사용 -> Tensorflow 필요 -> Python에 최우선으로 맞춰 개발됨 -> __딥러닝 개발 : python 언어 선택__
+- 백엔드/프론트엔드 : python (딥러닝
+
 #### `2) 결과`
 <img src="https://user-images.githubusercontent.com/71118045/144365814-59484285-4c11-48ce-8e2a-cd99ccc134ad.PNG" width="600" height="300"/>
 
