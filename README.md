@@ -19,7 +19,7 @@
 
 #### `3) 프로젝트 목표`
 - 해결방안 : 응급환경의 시간과 비용의 절감을 위해 추가 검사를 생략한, x-ray 촬영만으로 최종진단에 이르는 단축된 진단 프로세스 개발
-    <img src="./Result_Image/Process.png"  width="452" height="219"/>
+<img src="./Result_Image/Process.png"  width="452" height="219"/>
 - 타겟시장 : 응급실, 구급차 보유 병원
 - 고객의 Needs : 적은 데이터로 빠른 시간에 x-ray 사진을 진단&관리할 프로그램 필요
 - 기대사항 : 환자의 생존율을 높이고, 이에 소요되는 시간과 비용을 줄이는 것
@@ -35,7 +35,7 @@
 
 #### `2) 기술 선택 과정`
 - tensorflow에서 제공하는 6가지 CNN model 실험
-<img src="./Result_Image/Classification Model Result.png"  width="1322" height="420"/>
+<img src="./Result_Image/Classification Model Result.png"  width="1322" height="350"/>
 
 - imagenet의 pre-trained weight 학습
 - 전이 학습하며 실제 학습시에는 efficientnet model을 fine-tuning하여 사용하였습니다.
@@ -53,16 +53,16 @@
     - 진단 히스토리 열람 및 삭제 가능
 
 #### `2) 기술 선택 과정`
-### 언어 선택
-- 딥러닝 기술 사용 -> Tensorflow 필요 -> Python에 최우선으로 맞춰 개발됨 -> __딥러닝 개발 : python 언어 결정__
-- 딥러닝 코드와의 연결 필요 -> __백엔드/프론트엔드 : python 언어 결정__
+- 언어 선택
+    - 딥러닝 기술 사용 -> Tensorflow 필요 -> Python에 최우선으로 맞춰 개발됨 -> __딥러닝 개발 : python 언어 결정__
+    - 딥러닝 코드와의 연결 필요 -> __백엔드/프론트엔드 : python 언어 결정__
 
-### 프레임워크 선택
-- python 언어를 사용할 Flask or Django 고민
-- Flask 로 개발 시도 : https://saeyoun.tistory.com/2 
-- 보안, 인증 등의 기능 직접 구현 복잡함 & Flask를 이용한 많은 기능이 구현된 프로젝트를 찾기 어려움
-- Django로 Airbnb 클론코딩이 가능하다는 것을 발견 -> 로그인/이미지업로드/리스팅/상세정보 관리 등 필요한 기능 겹침 -> 토이프로젝트 진행
-- __Django로 개발 결정__ : https://saeyoun.tistory.com/3
+- 프레임워크 선택
+    - python 언어를 사용할 Flask or Django 고민
+    - Flask 로 개발 시도 : https://saeyoun.tistory.com/2 
+    - 보안, 인증 등의 기능 직접 구현 복잡함 & Flask를 이용한 많은 기능이 구현된 프로젝트를 찾기 어려움
+    - Django로 Airbnb 클론코딩이 가능하다는 것을 발견 -> 로그인/이미지업로드/리스팅/상세정보 관리 등 필요한 기능 겹침 -> 토이프로젝트 진행
+    - __Django로 개발 결정__ : https://saeyoun.tistory.com/3
 
 #### `3) 결과`
 <img src="https://user-images.githubusercontent.com/71118045/144365814-59484285-4c11-48ce-8e2a-cd99ccc134ad.PNG" width="600" height="300"/>
