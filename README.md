@@ -30,14 +30,22 @@
 - 환자 관리 : 환자 등록 및 리스팅 가능
 - 환자 진단
     - 로컬에서 환자 x-ray 이미지 업로드
-    - 1진단
+    - 12초 진단
     - TOP3 질병 + 각 질병의 확률값 출력
     - 질병 감염 의심 영역 표시
     - 진단 히스토리 열람 및 삭제 가능
 
 #### `2) 기술 선정 과정`
-- 딥러닝 기술 사용 -> Tensorflow 필요 -> Python에 최우선으로 맞춰 개발됨 -> __딥러닝 개발 : python 언어 선택__
-- 백엔드/프론트엔드 : python (딥러닝
+### 언어 선택
+- 딥러닝 기술 사용 -> Tensorflow 필요 -> Python에 최우선으로 맞춰 개발됨 -> __딥러닝 개발 : python 언어 결정__
+- 딥러닝 코드와의 연결 필요 -> __백엔드/프론트엔드 : python 언어 결정__
+
+### 프레임워크 선택
+- python 언어를 사용할 Flask or Django 고민
+- Flask 로 개발 시도 : https://saeyoun.tistory.com/2 
+- 보안, 인증 등의 기능 직접 구현 복잡함 & Flask를 이용한 많은 기능이 구현된 프로젝트를 찾기 어려움
+- Django로 Airbnb 클론코딩이 가능하다는 것을 발견 -> 토이프로젝트 진행
+- __Django로 개발 결정__ : https://saeyoun.tistory.com/3
 
 #### `2) 결과`
 <img src="https://user-images.githubusercontent.com/71118045/144365814-59484285-4c11-48ce-8e2a-cd99ccc134ad.PNG" width="600" height="300"/>
