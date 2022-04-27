@@ -34,6 +34,8 @@
 
 #### `2) 기술 선택 과정`
 - tensorflow에서 제공하는 6가지 CNN model 실험
+<img src="./Result_Image/Classification Model Result.png"  width="1200" height="400"/>
+
 - imagenet의 pre-trained weight 학습
 - 전이 학습하며 실제 학습시에는 efficientnet model을 fine-tuning하여 사용하였습니다.
 
@@ -96,6 +98,9 @@ This NIH Chest X-ray Dataset is comprised of 112,120 X-ray images with disease l
 ###### Ultralytics Yolov5 : https://github.com/ultralytics/yolov5
 
 <img src="./Result_Image/Detection_NIH_200.jpg"  width="400" height="400"/>
+
+
+
 
 ###### Result of NIH Data: [Google Drive Link](https://drive.google.com/drive/folders/1qo_5ICzeMUrHQ_-s0Z9d3KYSLCrNzqRl?usp=sharing)
 ###### Result of ChestX Data : [Google Drive Link](https://drive.google.com/drive/folders/1NBvWFz3Fto6ZqeLrqopEMlbUZnNpxodN?usp=sharing)
