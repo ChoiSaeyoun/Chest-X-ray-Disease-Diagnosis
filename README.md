@@ -19,6 +19,7 @@
 
 #### `3) 프로젝트 목표`
 - 해결방안 : 응급환경의 시간과 비용의 절감을 위해 추가 검사를 생략한, x-ray 촬영만으로 최종진단에 이르는 단축된 진단 프로세스 개발
+- <img src="./Result_Image/Process.png"  width="452" height="219"/>
 - 타겟시장 : 응급실, 구급차 보유 병원
 - 고객의 Needs : 적은 데이터로 빠른 시간에 x-ray 사진을 진단&관리할 프로그램 필요
 - 기대사항 : 환자의 생존율을 높이고, 이에 소요되는 시간과 비용을 줄이는 것
@@ -34,7 +35,7 @@
 
 #### `2) 기술 선택 과정`
 - tensorflow에서 제공하는 6가지 CNN model 실험
-<img src="./Result_Image/Classification Model Result.png"  width="1200" height="400"/>
+<img src="./Result_Image/Classification Model Result.png"  width="1322" height="481"/>
 
 - imagenet의 pre-trained weight 학습
 - 전이 학습하며 실제 학습시에는 efficientnet model을 fine-tuning하여 사용하였습니다.
@@ -68,6 +69,7 @@
 
 
 최종 프로그램 구조
+<img src="./Result_Image/Stucture.png"  width="754" height="553"/>
 <img src="https://user-images.githubusercontent.com/71118045/144364448-1fdd71ac-c470-46ed-8b56-d014affe6594.PNG" width="500" height="300"/>
 
 
