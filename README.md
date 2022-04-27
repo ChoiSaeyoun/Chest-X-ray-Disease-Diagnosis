@@ -1,6 +1,10 @@
 폐질환 의심 응급환자의 진단과정 단축을 위한 AI 흉부 X-ray 진단 보조 서비스
 =============
 
+    진단 속도 12초로 응급환자의 x-ray 이미지를 진단할 수 있는 정확도 97.1, auc 84.12의 서비스를 제작했다. 다음은 실제 서비스의 시연 캡처화면이며 x-ray 이미지를 업로드하면 상위 3개의 질병을  확률값과 함께 보여준다. 빨간 박스는 질병으로 의심되는 영역을 표시해 준다.
+
+=============
+
 ## 주제 구체화 과정
 #### `1) 의료 현장 리서치`
 - 응급실을 찾는 환자의 절반 이상(56%)이 엑스레이 촬영을 받고 있다. 
@@ -24,7 +28,7 @@
 - 고객의 Needs : 적은 데이터로 빠른 시간에 x-ray 사진을 진단&관리할 프로그램 필요
 - 기대사항 : 환자의 생존율을 높이고, 이에 소요되는 시간과 비용을 줄이는 것
 
-진단 속도 12초로 응급환자의 x-ray 이미지를 진단할 수 있는 정확도 97.1, auc 84.12의 서비스를 제작했다. 다음은 실제 서비스의 시연 캡처화면이며 x-ray 이미지를 업로드하면 상위 3개의 질병을 확률값과 함께 보여준다. 빨간 박스는 질병으로 의심되는 영역을 표시해 준다.
+
 
 
 ## Classification
@@ -79,6 +83,7 @@
 - 추가 데이터 서치
 - 기존 데이터의 질병과 같은 데이터들만 bounding box 등을 형식에 맞게 정제
 - 추가 학습 진행
+<img src="./Result_Image/Detection_NIH_200.jpg"  width="400" height="400"/>
 
 
 ## 백엔드/프론트엔드
@@ -117,47 +122,14 @@
 <img src="https://user-images.githubusercontent.com/71118045/144365814-59484285-4c11-48ce-8e2a-cd99ccc134ad.PNG" width="600" height="300"/>
 
 
+
+
 ## 최종 프로그램 구조
 <img src="https://user-images.githubusercontent.com/71118045/144364448-1fdd71ac-c470-46ed-8b56-d014affe6594.PNG" width="500" height="300"/>
 
 
 
-## :sparkles:1. Classification
 
-
-
-###### Weights: [Google Drive Link](https://drive.google.com/drive/folders/1-uo9GchtOoAFvXmE0zpPi0eaFgKNOrk6?usp=sharing)
-
-## :sparkles:2. Detection
-
-###### Training Data: [Google Drive Link](https://drive.google.com/drive/folders/11CUJGctnzHQcsq9O3WCSTRhgRjkMOOUN?usp=sharing)
-###### Ultralytics Yolov5 : https://github.com/ultralytics/yolov5
-
-<img src="./Result_Image/Detection_NIH_200.jpg"  width="400" height="400"/>
-
-
-
-
-###### Result of NIH Data: [Google Drive Link](https://drive.google.com/drive/folders/1qo_5ICzeMUrHQ_-s0Z9d3KYSLCrNzqRl?usp=sharing)
-###### Result of ChestX Data : [Google Drive Link](https://drive.google.com/drive/folders/1NBvWFz3Fto6ZqeLrqopEMlbUZnNpxodN?usp=sharing)
-###### Result of NIH & ChestX Data: [Google Frive Link](https://drive.google.com/drive/folders/1Koryg3pxeUs7oJ0ulO7FEjrq0EMPB6of?usp=sharing)
-
-## :sparkles:3. GAN Research
-
-<img src="https://user-images.githubusercontent.com/85219925/144364517-22de0573-d468-433f-95d4-b4eaac10f902.png"  width="400" height="400"/>
-
-###### Generated Image(PGGAN1): [Google Drive Link](https://drive.google.com/drive/folders/1qJj4dn9ap-fPbrHuP2OR9f7_tTKUm58L?usp=sharing)
-###### Generated Image(PGGAN2): [Google Drive Link](https://drive.google.com/drive/folders/1IWavLvJQTNJ_Ui-s0R7is2MTI1Q3naOe?usp=sharing)
-###### Generated Image(PGGAN3): [Google Drive Link](https://drive.google.com/drive/folders/1q1PmqqxZPPGEzazGkzOXv4WF1G5zFNO1?usp=sharing)
-###### PGGAN Weights: [Google Drive Link](https://drive.google.com/drive/folders/1Y9l7wqjt-cKR-gJRIe8DqZwbG91nyXEy?usp=sharing)
-
-###### Generated Image(DCGAN): [Google Drive Link](https://drive.google.com/drive/folders/18MekMJsuhZS6Shu3T6nvmNihK4M4oilz?usp=sharing)
-
-## :book:Papers
-###### 1. 폐질환 의심 응급환자의 진단 과정 단축을 위한 AI기반 X-ray진단 시스템
+## 논문
+###### 폐질환 의심 응급환자의 진단 과정 단축을 위한 AI기반 X-ray진단 시스템
 ###### https://drive.google.com/file/d/1FnQGBRWvJ70iH2Rut0L7hjO-4Bt15vpc/view?usp=sharing
-###### 2. PGGAN synthetic data를 활용한 Class간 데이터분포의 불균형 완화가 X-ray 질병 진단 정확도에 미치는 영향 연구
-###### https://drive.google.com/file/d/1OPLWdxKm7L0jW0QhTIYEo4-7AER3-JNz/view?usp=sharing
-
-## :REFERENCE
-###### https://www.koreascience.or.kr/article/JAKO201123736032447.pdf
