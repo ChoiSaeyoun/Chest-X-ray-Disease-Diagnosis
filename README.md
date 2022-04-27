@@ -1,8 +1,19 @@
-:crystal_ball:Chest X-ray Disease Diagnosis
+:crystal_ball:폐질환 의심 응급환자의 진단과정 단축을 위한 AI 흉부 X-ray 진단 보조 서비스
 =============
 
-Due to the global pandemic, the number of emergency patients continues to increase. More than
-half (56%) of patients visiting the emergency room are undergoing x-ray imaging. However, the time required for chest x-ray diagnosis in the emergency room takes about an hour, which is very long for emergency patients who need proper emergency treatment within golden time. In the case of system in this paper, x-ray imaging, which omits additional tests, is shortened to two stages of diagnosis, and the diagnosis speed of diagnosis is drastically shortened to around 12 seconds. To implement this, Classification and Detection-based Web Service was implemented, and Synthetic Medical X-ray Data were created using PGGAN to improve Classification performance. It is expected that these system will be used to improve the efficiency of medical process such as specifying problematic area, reducing x-ray processing time, and accurate disease classification in the emergency case.
+## 주제 구체화 과정
+### 의료 환경 리서치
+세계적인 펜데믹으로 인해 응급환자의 수는 계속해서 증가하고 있다. 여러분도 응금실을 방문했을 때 대기시간이 길어 어려움을 느낀 적이 있을 것이다. 특히 응급실을 찾는 환자의 절반 이상(56%)이 엑스레이 촬영을 받고 있다. 그 중 흉부외과는 x-ray 촬영률이 90%로 가장 높았다. 흉부손상은 외상으로 인한 사망의 20~25%를 차지할 정도로 적정시기의 적절한 치료가 매우 중요하다. 하지만 x-ray 진단에 소요되는 시간은 3371초, 약 1시간으로 골든타임이 중요한 응급환자에게는 긴 시간일 것이다. 응급실에서의 대기시간에 대한 만족도 조사에 의하면 40점대로 낮다는 것도 확인할 수 있었다. 
+
+### 의료 환경 문제점 분석
+이렇게 진단 시간이 많이 걸리는 이유는 다음과 같이 네단계의 프로세스로 진행되기 때문이었다. x-ray 촬영을 한 후 그 결과를 바탕으로 추가 검사 여부를 결정하게 되며 이 후 ct나 mri 등의 추가 검사를 마친 후에 최종진단에 이르게 된다. 각 프로세스별 대기시간까지 고려한다면 분명 적지 않은 시간일 것이다. 그래서 저희는 추가 검사를 생략한, x-ray 촬영만으로 최종진단에 이르는 단축된 진단 프로세스를 생각해 보게 되었다.
+
+### 기대되는 점
+진단 속도 12초로 응급환자의 x-ray 이미지를 진단할 수 있는 정확도 97.1, auc 84.12의 서비스를 제작했다. 다음은 실제 서비스의 시연 캡처화면이며 x-ray 이미지를 업로드하면 상위 3개의 질병을 확률값과 함께 보여준다. 빨간 박스는 질병으로 의심되는 영역을 표시해 준다.
+
+
+
+이를 구현하기 위해 Classification and Detection 기반 Web Service를 구현했으며, Classification 성능을 향상시키기 위해 PGGAN을 사용하여 합성 의료 X선 데이터를 생성했다. 문제가 있는 부위 특정, X선 처리시간 단축, 응급환자의 정확한 질병분류 등 의료과정의 효율성 향상에 활용될 것으로 기대된다.
 
 <img src="https://user-images.githubusercontent.com/71118045/144365814-59484285-4c11-48ce-8e2a-cd99ccc134ad.PNG" width="600" height="300"/>
 
@@ -51,3 +62,6 @@ This NIH Chest X-ray Dataset is comprised of 112,120 X-ray images with disease l
 ###### https://drive.google.com/file/d/1FnQGBRWvJ70iH2Rut0L7hjO-4Bt15vpc/view?usp=sharing
 ###### 2. PGGAN synthetic data를 활용한 Class간 데이터분포의 불균형 완화가 X-ray 질병 진단 정확도에 미치는 영향 연구
 ###### https://drive.google.com/file/d/1OPLWdxKm7L0jW0QhTIYEo4-7AER3-JNz/view?usp=sharing
+
+## :REFERENCE
+###### https://www.koreascience.or.kr/article/JAKO201123736032447.pdf
