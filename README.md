@@ -109,13 +109,12 @@
     - Django로 Airbnb 클론코딩이 가능하다는 것을 발견 -> 로그인/이미지업로드/리스팅/상세정보 관리 등 필요한 기능 겹침 -> 토이프로젝트 진행
     - __Django로 개발 결정__ : https://saeyoun.tistory.com/3
 
-#### `3) 데이터에 대한 이슈들`
-- 백엔드와 딥러닝 연동하기
- - Classification : 백엔드에서 해당 모델의 backbone을 직접 만들고 학습된 가중치를 부여하는 방식으로 진행
+#### `3) 백엔드와 딥러닝 연동하기`
+- Classification : 백엔드에서 해당 모델의 backbone을 직접 만들고 학습된 가중치를 부여하는 방식으로 진행
   - Django의 환자 app 에서 'diagnosis.py' 생성
   - image load 함수를 통해 이미지를 로드하고 생성 모델로 질병 예측
   - 상위 3개의 질병과 확률값 저장 및 반환
- - Detection : 백엔드에서 yolov5 모델을 만들고 학습된 가중치를 부여하는 방식으로 진행
+- Detection : 백엔드에서 yolov5 모델을 만들고 학습된 가중치를 부여하는 방식으로 진행
   -이미 로드된 이미지로 'detect.py' 실행시켜 uploads/patient_images/ 경로에 detect 된 이미지 저장
   -'form.py'에서 새로운 patient 객체에 x-ray 이미지, 질병진단결과, 질병영역검출결과 저장
 
