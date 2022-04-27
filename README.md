@@ -33,12 +33,34 @@
 - 각 질병에 대한 정확도 출력
 - 짧은 시간 안에 높은 정확도를 내야함
 
+#### `2) 데이터`
+- 최대한 많은 양의 데이터를 위해 며칠간 서칭
+- 신뢰성 있고 전문가에 의해 라벨링이 되어 있는 이미지 데이터 발견
+- 데이터 수집 : https://www.kaggle.com/nih-chest-xrays/data
+- bounding box 가 있는 데이터를 보고 추후 Detection도 결정
+
 #### `2) 기술 선택 과정`
+- 초기 : colab gpu 학습 진행 (1epoch 당 몇시간이 걸릴 정도로 오래 걸림/중간에 꺼짐)
+- 이후 : Ubuntu 서버 대여 -> 한 모델 당 2-3일에 학습 가능
+
 - tensorflow에서 제공하는 6가지 CNN model 실험
-<img src="./Result_Image/Classification Model Result.png"  width="1322" height="350"/>
+<img src="https://user-images.githubusercontent.com/71118045/144366234-16d81ff2-3980-4499-96c6-4c4218b2dd28.PNG"  width="900" height="300"/>
 
 - imagenet의 pre-trained weight 학습
-- 전이 학습하며 실제 학습시에는 efficientnet model을 fine-tuning하여 사용하였습니다.
+- test AUC가 가장 높았던 efficientnet model을 fine-tuning하여 사용
+
+#### `3) 정확도를 높이기 위한 시도`
+- 다양한 모델 시도
+- 기존에 정해져있던 데이터 비율 조정 : Train, Valid, Test 데이터 비율 0.64:0.16:0.2 -> 0.6:0.2:0.2
+- Train, Test split 함수의 stratify 옵션을 사용하여 데이터의 질병 분포 유지 (MultilabelStratifiedKFold 이용)
+- 같은 환자의 데이터가Train, Valid, Test 데이터 에 모두 나누어 들어가 있었음
+    - 같은 환자의 데이터라면 하나만 남기고 삭제
+    - 모든 데이터셋에 다른 환자가 들어가도록 설정
+
+## Detection
+#### `1) 고려한 점`
+- 13개의 질병 위치를 검출할 수 있는 가중치 값 생성
+- 
 
 
 
@@ -75,21 +97,10 @@
 이를 구현하기 위해 Classification and Detection 기반 Web Service를 구현했으며, Classification 성능을 향상시키기 위해 PGGAN을 사용하여 합성 의료 X선 데이터를 생성했다. 문제가 있는 부위 특정, X선 처리시간 단축, 응급환자의 정확한 질병분류 등 의료과정의 효율성 향상에 활용될 것으로 기대된다.
 
 
-It is an explanation of the system structure of the program. Starting from the right, uploading the x-ray image from the website requests classification and detection diagnosis of the image at the backend. Then, the uploaded image is classified with the learned model. In the case of Detection, learning is conducted using the yolov5 model. Then, the suspected disease area is detected with the uploaded image and the resulting image is stored. Through this process, a screen is finally output as a result of diagnosing the patient's disease on the website screen and detecting the suspected disease occurrence site. Three possible diseases are presented to help doctors diagnose diseases quickly.
-
-
-
-## :sparkles:0. Dataset
-
-Chest X-ray exams are one of the most frequent and cost-effective medical imaging examinations available. However, clinical diagnosis of a chest X-ray can be challenging and sometimes more difficult than diagnosis via chest CT imaging. The lack of large publicly available datasets with annotations means it is still very difficult, if not impossible, to achieve clinically relevant computer-aided detection and diagnosis (CAD) in real world medical sites with chest X-rays. One major hurdle in creating large X-ray image datasets is the lack resources for labeling so many images. Prior to the release of this dataset, Openi was the largest publicly available source of chest X-ray images with 4,143 images available.
-
-This NIH Chest X-ray Dataset is comprised of 112,120 X-ray images with disease labels from 30,805 unique patients. To create these labels, the authors used Natural Language Processing to text-mine disease classifications from the associated radiological reports. The labels are expected to be >90% accurate and suitable for weakly-supervised learning. The original radiology reports are not publicly available but you can find more details on the labeling process in this Open Access paper: "ChestX-ray8: Hospital-scale Chest X-ray Database and Benchmarks on Weakly-Supervised Classification and Localization of Common Thorax Diseases." (Wang et al.)
-
-###### https://www.kaggle.com/nih-chest-xrays/data
 
 ## :sparkles:1. Classification
 
-<img src="https://user-images.githubusercontent.com/71118045/144366234-16d81ff2-3980-4499-96c6-4c4218b2dd28.PNG"  width="900" height="300"/>
+
 
 ###### Weights: [Google Drive Link](https://drive.google.com/drive/folders/1-uo9GchtOoAFvXmE0zpPi0eaFgKNOrk6?usp=sharing)
 
