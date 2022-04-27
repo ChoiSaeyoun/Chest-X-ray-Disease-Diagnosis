@@ -58,7 +58,7 @@
 - 극초기 : 정확도가 너무 낮게 나옴 -> binary accuracy가 아닌 accuracy 를 출력해서 정확도가 낮게 나옴 -> 수정
 - 초기 : imagenet pretrained, model에 최적화되게 image size 변경, layer 변경
 - 중간 : validation과 test dataset의 accuracy 차이가 너무 큼 -> validation dataset으로 train dataset을 사용하고 있었음 -> 수정
-    - 해당 이유를 알지 못해 다른 시행착오 겪음
+ - 해당 이유를 알지 못해 다른 시행착오 겪음
     - 기존에 정해져있던 데이터 비율 조정 : Train, Valid, Test 데이터 비율 0.64:0.16:0.2 -> 0.6:0.2:0.2
     - Train, Test split 함수의 stratify 옵션을 사용하여 데이터의 질병 분포 유지 (MultilabelStratifiedKFold 이용)
     - 같은 환자의 데이터가Train, Valid, Test 데이터 에 모두 나누어 들어가 있었음
