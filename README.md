@@ -25,6 +25,20 @@
 
 진단 속도 12초로 응급환자의 x-ray 이미지를 진단할 수 있는 정확도 97.1, auc 84.12의 서비스를 제작했다. 다음은 실제 서비스의 시연 캡처화면이며 x-ray 이미지를 업로드하면 상위 3개의 질병을 확률값과 함께 보여준다. 빨간 박스는 질병으로 의심되는 영역을 표시해 준다.
 
+
+## Classification
+#### `1) 고려한 점`
+- 13개의 질병을 분류할 수 있는 모델 생성
+- 각 질병에 대한 정확도 출력
+- 짧은 시간 안에 높은 정확도를 내야함
+
+#### `2) 기술 선택 과정`
+- tensorflow에서 제공하는 6가지 CNN model 실험
+- imagenet의 pre-trained weight 학습
+- 전이 학습하며 실제 학습시에는 efficientnet model을 fine-tuning하여 사용하였습니다.
+
+
+
 ## 웹사이트 결과
 #### `1) 고려한 점`
 - 환자 관리 : 환자 등록 및 리스팅 가능
@@ -35,7 +49,7 @@
     - 질병 감염 의심 영역 표시
     - 진단 히스토리 열람 및 삭제 가능
 
-#### `2) 기술 선정 과정`
+#### `2) 기술 선택 과정`
 ### 언어 선택
 - 딥러닝 기술 사용 -> Tensorflow 필요 -> Python에 최우선으로 맞춰 개발됨 -> __딥러닝 개발 : python 언어 결정__
 - 딥러닝 코드와의 연결 필요 -> __백엔드/프론트엔드 : python 언어 결정__
@@ -44,12 +58,15 @@
 - python 언어를 사용할 Flask or Django 고민
 - Flask 로 개발 시도 : https://saeyoun.tistory.com/2 
 - 보안, 인증 등의 기능 직접 구현 복잡함 & Flask를 이용한 많은 기능이 구현된 프로젝트를 찾기 어려움
-- Django로 Airbnb 클론코딩이 가능하다는 것을 발견 -> 토이프로젝트 진행
+- Django로 Airbnb 클론코딩이 가능하다는 것을 발견 -> 로그인/이미지업로드/리스팅/상세정보 관리 등 필요한 기능 겹침 -> 토이프로젝트 진행
 - __Django로 개발 결정__ : https://saeyoun.tistory.com/3
 
-#### `2) 결과`
+#### `3) 결과`
 <img src="https://user-images.githubusercontent.com/71118045/144365814-59484285-4c11-48ce-8e2a-cd99ccc134ad.PNG" width="600" height="300"/>
 
+
+최종 프로그램 구조
+<img src="https://user-images.githubusercontent.com/71118045/144364448-1fdd71ac-c470-46ed-8b56-d014affe6594.PNG" width="500" height="300"/>
 
 
 이를 구현하기 위해 Classification and Detection 기반 Web Service를 구현했으며, Classification 성능을 향상시키기 위해 PGGAN을 사용하여 합성 의료 X선 데이터를 생성했다. 문제가 있는 부위 특정, X선 처리시간 단축, 응급환자의 정확한 질병분류 등 의료과정의 효율성 향상에 활용될 것으로 기대된다.
@@ -57,7 +74,7 @@
 
 It is an explanation of the system structure of the program. Starting from the right, uploading the x-ray image from the website requests classification and detection diagnosis of the image at the backend. Then, the uploaded image is classified with the learned model. In the case of Detection, learning is conducted using the yolov5 model. Then, the suspected disease area is detected with the uploaded image and the resulting image is stored. Through this process, a screen is finally output as a result of diagnosing the patient's disease on the website screen and detecting the suspected disease occurrence site. Three possible diseases are presented to help doctors diagnose diseases quickly.
 
-<img src="https://user-images.githubusercontent.com/71118045/144364448-1fdd71ac-c470-46ed-8b56-d014affe6594.PNG" width="500" height="300"/>
+
 
 ## :sparkles:0. Dataset
 
